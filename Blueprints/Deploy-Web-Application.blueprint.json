@@ -1,0 +1,576 @@
+{
+    "tasks":[
+        {
+            "vm_name":"DB Server",
+            "memory_mb":"1024",
+            "network_uuid":"41694722-fa01-4c42-af67-e2b3d6431000",
+            "uid":"59154a16541cc60a7e450090",
+            "classification":"provision_nutanix",
+            "num_cores_per_vcpu":"2",
+            "fixed_cost":0.0,
+            "vm_disk_uuid":"c3829d21-ab66-4df9-9e1c-56257b316e27",
+            "creation_time":1494567446,
+            "variable_cost":0.0,
+            "num_vcpus":"1",
+            "credential_id":"59154a16541cc60a7e450092",
+            "modification_time":1494568756,
+            "vdisks":[
+
+            ],
+            "version":7,
+            "critical":true,
+            "editables":[
+
+            ],
+            "name":"Provision Nutanix"
+        },
+        {
+            "uid":"59154a2e541cc60a7e4500e0",
+            "classification":"profile_action_task",
+            "creation_time":1494567470,
+            "credential_id":null,
+            "modification_time":1494568756,
+            "version":8,
+            "critical":true,
+            "editables":[
+
+            ],
+            "action":"create",
+            "name":"Provider Create Task"
+        },
+        {
+            "uid":"59154a8e541cc60a7e4500f7",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nyum -y install git",
+            "creation_time":1494567566,
+            "credential_id":null,
+            "modification_time":1494568756,
+            "version":6,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Install git"
+        },
+        {
+            "uid":"59154b01541cc60a7e450141",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nyum -y install mariadb-server mariadb\nsystemctl enable mariadb\nsystemctl start mariadb",
+            "creation_time":1494567681,
+            "credential_id":null,
+            "modification_time":1494568756,
+            "version":5,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Install DB"
+        },
+        {
+            "vm_name":"App Server",
+            "memory_mb":"1024",
+            "network_uuid":"41694722-fa01-4c42-af67-e2b3d6431000",
+            "uid":"59154b4d541cc60a6b118679",
+            "classification":"provision_nutanix",
+            "num_cores_per_vcpu":"2",
+            "fixed_cost":0.0,
+            "vm_disk_uuid":"c3829d21-ab66-4df9-9e1c-56257b316e27",
+            "creation_time":1494567757,
+            "variable_cost":0.0,
+            "num_vcpus":"1",
+            "credential_id":"59154a16541cc60a7e450092",
+            "modification_time":1494568756,
+            "vdisks":[
+
+            ],
+            "version":4,
+            "critical":true,
+            "editables":[
+
+            ],
+            "name":"Provision Nutanix"
+        },
+        {
+            "uid":"59154b4d541cc60a6b118677",
+            "classification":"profile_action_task",
+            "creation_time":1494567757,
+            "credential_id":null,
+            "modification_time":1494568756,
+            "version":4,
+            "critical":true,
+            "editables":[
+
+            ],
+            "action":"create",
+            "name":"Provider Create Task"
+        },
+        {
+            "uid":"59154c07541cc60a7e450198",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nyum -y install git",
+            "creation_time":1494567566,
+            "credential_id":null,
+            "modification_time":1494568756,
+            "version":3,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Install git"
+        },
+        {
+            "uid":"59154c07541cc60a7e45019a",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nyum -y install firewalld\nsystemctl enable firewalld\nsystemctl start firewalld\nfirewall-cmd --permanent --add-port=80\/tcp\nfirewall-cmd --reload",
+            "creation_time":1494567943,
+            "credential_id":null,
+            "modification_time":1494568756,
+            "version":3,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Install firewalld"
+        },
+        {
+            "uid":"59154c7e541cc60a7e450219",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nyum -y install epel-release\nyum -y install nginx\nsystemctl enable nginx\nsystemctl start nginx",
+            "creation_time":1494568062,
+            "credential_id":null,
+            "modification_time":1494568756,
+            "version":2,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Install NGINX"
+        }
+    ],
+    "uid":"59154a16541cc60a7e450096",
+    "classification":"blueprint",
+    "autoscale_config":{
+        "post_flow":null,
+        "cool_down_period":"1800",
+        "uid":"59154a16541cc60a7e4500a9",
+        "classification":null,
+        "alert_count":"1",
+        "max_count":"1",
+        "pre_flow":null,
+        "min_count":"1",
+        "listen_for":"external",
+        "scale_by":"1",
+        "alert_window":"1800"
+    },
+    "profiles":[
+        {
+            "cost":0.0,
+            "uid":"59154a16541cc60a7e450091",
+            "classification":"resource_profile",
+            "service_port":22,
+            "address":"@@{vm_ip}@@",
+            "creation_time":1494567446,
+            "modification_time":1494568756,
+            "version":7,
+            "provider":"59154a16541cc60a7e450090",
+            "service_type":"ssh",
+            "automatic_cost":false,
+            "os_type":"Linux",
+            "properties":[
+
+            ],
+            "name":"Provider 1"
+        },
+        {
+            "cost":0.0,
+            "uid":"59154b4d541cc60a6b11867a",
+            "classification":"resource_profile",
+            "service_port":22,
+            "address":"@@{vm_ip}@@",
+            "creation_time":1494567757,
+            "modification_time":1494568756,
+            "version":4,
+            "provider":"59154b4d541cc60a6b118679",
+            "service_type":"ssh",
+            "automatic_cost":false,
+            "os_type":"Linux",
+            "properties":[
+
+            ],
+            "name":"Provider 2"
+        }
+    ],
+    "strategy_enabled":false,
+    "replaced_tasks":{
+
+    },
+    "environment":"default",
+    "config":{
+        "setup":[
+
+        ],
+        "uid":"59154a16541cc60a7e4500aa",
+        "classification":null,
+        "deploy":[
+
+        ]
+    },
+    "calm-version":"1.8.3",
+    "description":"Deploy MySQL Server and NGINX Server on AHV",
+    "parent":null,
+    "flows":[
+        {
+            "tasks":[
+                {
+                    "uid":"59154a2e541cc60a7e4500e9",
+                    "classification":null,
+                    "work_type":"PROFILE",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"59154a2e541cc60a7e4500e0"
+                },
+                {
+                    "uid":"59154a8e541cc60a7e4500f8",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"59154a8e541cc60a7e4500f7"
+                },
+                {
+                    "uid":"59154b01541cc60a7e450142",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"59154b01541cc60a7e450141"
+                },
+                {
+                    "uid":"59154b4d541cc60a6b118678",
+                    "classification":null,
+                    "work_type":"PROFILE",
+                    "target_id":"cid:00000002",
+                    "target_type":"RESOURCE",
+                    "work_id":"59154b4d541cc60a6b118677"
+                },
+                {
+                    "uid":"59154c07541cc60a7e450199",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000002",
+                    "target_type":"RESOURCE",
+                    "work_id":"59154c07541cc60a7e450198"
+                },
+                {
+                    "uid":"59154c07541cc60a7e45019b",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000002",
+                    "target_type":"RESOURCE",
+                    "work_id":"59154c07541cc60a7e45019a"
+                },
+                {
+                    "uid":"59154c7e541cc60a7e45021a",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000002",
+                    "target_type":"RESOURCE",
+                    "work_id":"59154c7e541cc60a7e450219"
+                }
+            ],
+            "uid":"cid:00000003",
+            "classification":null,
+            "eta":-1,
+            "creation_time":1494567566,
+            "edges":[
+                {
+                    "dest":"59154a8e541cc60a7e4500f8",
+                    "src":"59154a2e541cc60a7e4500e9",
+                    "uid":"59154a8e541cc60a7e4500f9",
+                    "classification":null
+                },
+                {
+                    "dest":"59154b01541cc60a7e450142",
+                    "src":"59154a8e541cc60a7e4500f8",
+                    "uid":"59154b01541cc60a7e450143",
+                    "classification":null
+                },
+                {
+                    "dest":"59154c07541cc60a7e450199",
+                    "src":"59154b4d541cc60a6b118678",
+                    "uid":"59154c07541cc60a7e45019c",
+                    "classification":null
+                },
+                {
+                    "dest":"59154c07541cc60a7e45019b",
+                    "src":"59154c07541cc60a7e450199",
+                    "uid":"59154c07541cc60a7e45019d",
+                    "classification":null
+                },
+                {
+                    "dest":"59154c7e541cc60a7e45021a",
+                    "src":"59154c07541cc60a7e45019b",
+                    "uid":"59154c7e541cc60a7e45021b",
+                    "classification":null
+                },
+                {
+                    "dest":"59154b4d541cc60a6b118678",
+                    "src":"59154b01541cc60a7e450142",
+                    "uid":"59154cc9541cc60a7e45029d",
+                    "classification":null
+                }
+            ],
+            "has_critical_tasks":true,
+            "modification_time":1494568756,
+            "version":0,
+            "flow_type":"ACTION",
+            "critical":true,
+            "name":"create-action"
+        }
+    ],
+    "dependencies":[
+
+    ],
+    "credentials":[
+        {
+            "username":"root",
+            "public_key":null,
+            "uid":"59154a16541cc60a7e450092",
+            "classification":null,
+            "secret_type":"password",
+            "creation_time":1494567446,
+            "modification_time":1494568756,
+            "secret":null,
+            "version":7,
+            "name":"root"
+        }
+    ],
+    "bp_id":null,
+    "properties":[
+
+    ],
+    "autoscale_enabled":false,
+    "name":"Deploy Web Application",
+    "setup_ids":{
+
+    },
+    "h":0.0,
+    "resiliency_config":{
+        "post_flow":null,
+        "cool_down_period":"1800",
+        "alert_window":"1800",
+        "classification":null,
+        "alert_count":"1",
+        "pre_flow":null,
+        "listen_for":"internal",
+        "uid":"59154a16541cc60a7e4500ab"
+    },
+    "current_profile":null,
+    "resiliency_enabled":false,
+    "architecture":[
+        {
+            "tasks":[
+
+            ],
+            "uid":"cid:00000001",
+            "classification":"compute",
+            "autoscale_config":{
+                "post_flow":null,
+                "cool_down_period":"1800",
+                "uid":"59154a16541cc60a7e45009e",
+                "classification":null,
+                "alert_count":"1",
+                "max_count":"1",
+                "pre_flow":null,
+                "min_count":"1",
+                "listen_for":"external",
+                "scale_by":"1",
+                "alert_window":"1800"
+            },
+            "profiles":[
+                "59154a16541cc60a7e450091"
+            ],
+            "strategy_enabled":false,
+            "config":{
+                "setup":[
+
+                ],
+                "uid":"59154a16541cc60a7e4500a1",
+                "classification":null,
+                "deploy":[
+                    "59154a8e541cc60a7e4500f7",
+                    "59154b01541cc60a7e450141"
+                ]
+            },
+            "parent":"59154a16541cc60a7e450096",
+            "flows":[
+
+            ],
+            "dependencies":[
+
+            ],
+            "bp_id":"59154a16541cc60a7e450096",
+            "properties":[
+
+            ],
+            "autoscale_enabled":false,
+            "name":"Deploy DB Server",
+            "h":0.0,
+            "resiliency_config":{
+                "post_flow":null,
+                "cool_down_period":"1800",
+                "alert_window":"1800",
+                "classification":null,
+                "alert_count":"1",
+                "pre_flow":null,
+                "listen_for":"internal",
+                "uid":"59154a16541cc60a7e45009f"
+            },
+            "current_profile":"59154a16541cc60a7e450091",
+            "resiliency_enabled":false,
+            "w":0.0,
+            "strategy_config":{
+                "post_flow":null,
+                "rollback_pre_flow":null,
+                "classification":null,
+                "rolling_factor":"100",
+                "initial_version":null,
+                "approval_flag":false,
+                "upgrade_flow":null,
+                "rollback_flow":null,
+                "pre_flow":null,
+                "rollback_post_flow":null,
+                "upgrade_type":"rolling_upgrade",
+                "uid":"59154a16541cc60a7e4500a0",
+                "users":[
+
+                ],
+                "teams":[
+
+                ],
+                "emails":[
+
+                ],
+                "initial_count":"1"
+            },
+            "y":273.5,
+            "x":206.0
+        },
+        {
+            "tasks":[
+
+            ],
+            "uid":"cid:00000002",
+            "classification":"compute",
+            "autoscale_config":{
+                "post_flow":null,
+                "cool_down_period":"1800",
+                "uid":"59154b4d541cc60a6b1186a5",
+                "classification":null,
+                "alert_count":"1",
+                "max_count":"1",
+                "pre_flow":null,
+                "min_count":"1",
+                "listen_for":"external",
+                "scale_by":"1",
+                "alert_window":"1800"
+            },
+            "profiles":[
+                "59154b4d541cc60a6b11867a"
+            ],
+            "strategy_enabled":false,
+            "config":{
+                "setup":[
+
+                ],
+                "uid":"59154b4d541cc60a6b1186a8",
+                "classification":null,
+                "deploy":[
+                    "59154c07541cc60a7e450198",
+                    "59154c07541cc60a7e45019a",
+                    "59154c7e541cc60a7e450219"
+                ]
+            },
+            "parent":"59154a16541cc60a7e450096",
+            "flows":[
+
+            ],
+            "dependencies":[
+
+            ],
+            "bp_id":"59154a16541cc60a7e450096",
+            "properties":[
+
+            ],
+            "autoscale_enabled":false,
+            "name":"Deploy App Server",
+            "h":0.0,
+            "resiliency_config":{
+                "post_flow":null,
+                "cool_down_period":"1800",
+                "alert_window":"1800",
+                "classification":null,
+                "alert_count":"1",
+                "pre_flow":null,
+                "listen_for":"internal",
+                "uid":"59154b4d541cc60a6b1186a6"
+            },
+            "current_profile":"59154b4d541cc60a6b11867a",
+            "resiliency_enabled":false,
+            "w":0.0,
+            "strategy_config":{
+                "post_flow":null,
+                "rollback_pre_flow":null,
+                "classification":null,
+                "rolling_factor":"100",
+                "initial_version":null,
+                "approval_flag":false,
+                "upgrade_flow":null,
+                "rollback_flow":null,
+                "pre_flow":null,
+                "rollback_post_flow":null,
+                "upgrade_type":"rolling_upgrade",
+                "uid":"59154b4d541cc60a6b1186a7",
+                "users":[
+
+                ],
+                "teams":[
+
+                ],
+                "emails":[
+
+                ],
+                "initial_count":"1"
+            },
+            "y":646.6468505859,
+            "x":389.9820556641
+        }
+    ],
+    "w":0.0,
+    "strategy_config":{
+        "post_flow":null,
+        "rollback_pre_flow":null,
+        "classification":null,
+        "rolling_factor":"100",
+        "initial_version":null,
+        "approval_flag":false,
+        "upgrade_flow":null,
+        "rollback_flow":null,
+        "pre_flow":null,
+        "rollback_post_flow":null,
+        "upgrade_type":"rolling_upgrade",
+        "uid":"59154a16541cc60a7e4500ac",
+        "users":[
+
+        ],
+        "teams":[
+
+        ],
+        "emails":[
+
+        ],
+        "initial_count":"1"
+    },
+    "y":0.0,
+    "x":0.0
+}

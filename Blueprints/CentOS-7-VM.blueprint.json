@@ -1,0 +1,239 @@
+{
+    "tasks":[
+        {
+            "vm_name":"CentOS 7 VM",
+            "memory_mb":"2048",
+            "network_uuid":"41694722-fa01-4c42-af67-e2b3d6431000",
+            "uid":"5914cf93541cc60fef9c4007",
+            "classification":"provision_nutanix",
+            "num_cores_per_vcpu":"2",
+            "fixed_cost":0.0,
+            "vm_disk_uuid":"c3829d21-ab66-4df9-9e1c-56257b316e27",
+            "creation_time":1494536083,
+            "variable_cost":0.0,
+            "num_vcpus":"2",
+            "credential_id":"59154175541cc60a6b11849e",
+            "modification_time":1494565237,
+            "vdisks":[
+
+            ],
+            "version":5,
+            "critical":true,
+            "editables":[
+
+            ],
+            "name":"Provision Nutanix"
+        }
+    ],
+    "uid":"5914cf34541cc60fef9c3fe0",
+    "classification":"blueprint",
+    "autoscale_config":{
+        "post_flow":null,
+        "cool_down_period":"1800",
+        "uid":"5914cf34541cc60fef9c3fe6",
+        "classification":null,
+        "alert_count":"1",
+        "max_count":"1",
+        "pre_flow":null,
+        "min_count":"1",
+        "listen_for":"external",
+        "scale_by":"1",
+        "alert_window":"1800"
+    },
+    "profiles":[
+        {
+            "cost":0.0,
+            "uid":"5914cf93541cc60fef9c4008",
+            "classification":"resource_profile",
+            "service_port":22,
+            "address":"@@{vm_ip}@@",
+            "creation_time":1494536083,
+            "modification_time":1494565237,
+            "version":5,
+            "provider":"5914cf93541cc60fef9c4007",
+            "service_type":"ssh",
+            "automatic_cost":false,
+            "os_type":"Linux",
+            "properties":[
+
+            ],
+            "name":"Provider 1"
+        }
+    ],
+    "strategy_enabled":false,
+    "replaced_tasks":{
+
+    },
+    "environment":"default",
+    "config":{
+        "setup":[
+
+        ],
+        "uid":"5914cf34541cc60fef9c3fe7",
+        "classification":null,
+        "deploy":[
+
+        ]
+    },
+    "calm-version":"1.8.3",
+    "description":"Create a CentOS v7 Server VM on AHV",
+    "parent":null,
+    "flows":[
+
+    ],
+    "dependencies":[
+
+    ],
+    "credentials":[
+        {
+            "username":"root",
+            "public_key":null,
+            "uid":"59154175541cc60a6b11849e",
+            "classification":null,
+            "secret_type":"password",
+            "creation_time":1494565237,
+            "modification_time":1494565237,
+            "secret":null,
+            "version":0,
+            "name":"root"
+        }
+    ],
+    "bp_id":null,
+    "properties":[
+
+    ],
+    "autoscale_enabled":false,
+    "name":"CentOS 7 VM",
+    "setup_ids":{
+
+    },
+    "h":0.0,
+    "resiliency_config":{
+        "post_flow":null,
+        "cool_down_period":"1800",
+        "alert_window":"1800",
+        "classification":null,
+        "alert_count":"1",
+        "pre_flow":null,
+        "listen_for":"internal",
+        "uid":"5914cf34541cc60fef9c3fe8"
+    },
+    "current_profile":null,
+    "resiliency_enabled":false,
+    "architecture":[
+        {
+            "tasks":[
+
+            ],
+            "uid":"cid:00000001",
+            "classification":"compute",
+            "autoscale_config":{
+                "post_flow":null,
+                "cool_down_period":"1800",
+                "uid":"5914cf93541cc60fef9c401e",
+                "classification":null,
+                "alert_count":"1",
+                "max_count":"1",
+                "pre_flow":null,
+                "min_count":"1",
+                "listen_for":"external",
+                "scale_by":"1",
+                "alert_window":"1800"
+            },
+            "profiles":[
+                "5914cf93541cc60fef9c4008"
+            ],
+            "strategy_enabled":false,
+            "config":{
+                "setup":[
+
+                ],
+                "uid":"5914cf93541cc60fef9c4021",
+                "classification":null,
+                "deploy":[
+
+                ]
+            },
+            "parent":"5914cf34541cc60fef9c3fe0",
+            "flows":[
+
+            ],
+            "dependencies":[
+
+            ],
+            "bp_id":"5914cf34541cc60fef9c3fe0",
+            "properties":[
+
+            ],
+            "autoscale_enabled":false,
+            "name":"Deploy CentOS v7 Server VM",
+            "h":0.0,
+            "resiliency_config":{
+                "post_flow":null,
+                "cool_down_period":"1800",
+                "alert_window":"1800",
+                "classification":null,
+                "alert_count":"1",
+                "pre_flow":null,
+                "listen_for":"internal",
+                "uid":"5914cf93541cc60fef9c401f"
+            },
+            "current_profile":"5914cf93541cc60fef9c4008",
+            "resiliency_enabled":false,
+            "w":0.0,
+            "strategy_config":{
+                "post_flow":null,
+                "rollback_pre_flow":null,
+                "classification":null,
+                "rolling_factor":"100",
+                "initial_version":null,
+                "approval_flag":false,
+                "upgrade_flow":null,
+                "rollback_flow":null,
+                "pre_flow":null,
+                "rollback_post_flow":null,
+                "upgrade_type":"rolling_upgrade",
+                "uid":"5914cf93541cc60fef9c4020",
+                "users":[
+
+                ],
+                "teams":[
+
+                ],
+                "emails":[
+
+                ],
+                "initial_count":"1"
+            },
+            "y":423.5,
+            "x":516.0
+        }
+    ],
+    "w":0.0,
+    "strategy_config":{
+        "post_flow":null,
+        "rollback_pre_flow":null,
+        "classification":null,
+        "rolling_factor":"100",
+        "initial_version":null,
+        "approval_flag":false,
+        "upgrade_flow":null,
+        "rollback_flow":null,
+        "pre_flow":null,
+        "rollback_post_flow":null,
+        "upgrade_type":"rolling_upgrade",
+        "uid":"5914cf34541cc60fef9c3fe9",
+        "users":[
+
+        ],
+        "teams":[
+
+        ],
+        "emails":[
+
+        ],
+        "initial_count":"1"
+    },
+    "y":0.0,
+    "x":0.0
+}

@@ -1,0 +1,498 @@
+{
+    "tasks":[
+        {
+            "vm_name":"CentOS v7 Server VM",
+            "memory_mb":"1024",
+            "network_uuid":"11b48f22-1bb9-4d87-b42f-aa7b17ee99fa",
+            "uid":"591c74fce138231264cbb744",
+            "classification":"provision_nutanix",
+            "num_cores_per_vcpu":"2",
+            "fixed_cost":0.0,
+            "vm_disk_uuid":"9bc68524-1faa-4d9b-bd30-853656a6724e",
+            "creation_time":1495037180,
+            "variable_cost":0.0,
+            "num_vcpus":"1",
+            "credential_id":"591c74fce138231264cbb746",
+            "modification_time":1495065533,
+            "vdisks":[
+
+            ],
+            "version":23,
+            "critical":true,
+            "editables":[
+
+            ],
+            "name":"Provision Nutanix"
+        },
+        {
+            "uid":"591cca6ee138231264cbc71e",
+            "classification":"profile_action_task",
+            "creation_time":1495059054,
+            "credential_id":null,
+            "modification_time":1495065533,
+            "version":24,
+            "critical":true,
+            "editables":[
+
+            ],
+            "action":"create",
+            "name":"Provider Create Task"
+        },
+        {
+            "uid":"591ccab4e138231265235a8d",
+            "classification":"runshell",
+            "script":"hostnamectl set-hostname @@{hostname}@@",
+            "creation_time":1495059124,
+            "credential_id":null,
+            "modification_time":1495065533,
+            "version":22,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Rename Host"
+        },
+        {
+            "uid":"591ccdaee138231264cbc7fb",
+            "classification":"provision_existing_machine",
+            "creation_time":1495059886,
+            "credential_id":"591c74fce138231264cbb746",
+            "modification_time":1495065533,
+            "version":21,
+            "critical":true,
+            "editables":[
+
+            ],
+            "address":"localhost",
+            "name":"Existing Machine"
+        },
+        {
+            "uid":"591cd088e13823126523619f",
+            "classification":"runshell",
+            "script":"yum -y update",
+            "creation_time":1495060616,
+            "credential_id":null,
+            "modification_time":1495065533,
+            "version":17,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Update Packages"
+        },
+        {
+            "uid":"591cd354e138231264cbd1ec",
+            "classification":"runshell",
+            "script":"yum -y install net-tools",
+            "creation_time":1495061332,
+            "credential_id":null,
+            "modification_time":1495065533,
+            "version":12,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Get Net-Tools"
+        }
+    ],
+    "uid":"591c73dbe138231265235299",
+    "classification":"blueprint",
+    "autoscale_config":{
+        "post_flow":null,
+        "cool_down_period":"1800",
+        "uid":"591c73dbe13823126523529f",
+        "classification":null,
+        "alert_count":"1",
+        "max_count":"1",
+        "pre_flow":null,
+        "min_count":"1",
+        "listen_for":"external",
+        "scale_by":"1",
+        "alert_window":"1800"
+    },
+    "profiles":[
+        {
+            "cost":0.0,
+            "uid":"591c74fce138231264cbb745",
+            "classification":"resource_profile",
+            "service_port":22,
+            "address":"@@{vm_ip}@@",
+            "creation_time":1495037180,
+            "modification_time":1495065532,
+            "version":23,
+            "provider":"591c74fce138231264cbb744",
+            "service_type":"ssh",
+            "automatic_cost":false,
+            "os_type":"Linux",
+            "properties":[
+
+            ],
+            "name":"Provider 1"
+        },
+        {
+            "cost":0.0,
+            "uid":"591ccdaee138231264cbc7fc",
+            "classification":"resource_profile",
+            "service_port":22,
+            "address":null,
+            "creation_time":1495059886,
+            "modification_time":1495065533,
+            "version":21,
+            "provider":"591ccdaee138231264cbc7fb",
+            "service_type":"ssh",
+            "automatic_cost":false,
+            "os_type":"Linux",
+            "properties":[
+
+            ],
+            "name":"Provider 2"
+        }
+    ],
+    "strategy_enabled":false,
+    "replaced_tasks":{
+
+    },
+    "environment":"default",
+    "config":{
+        "setup":[
+
+        ],
+        "uid":"591c73dbe1382312652352a0",
+        "classification":null,
+        "deploy":[
+
+        ]
+    },
+    "calm-version":"1.8.3",
+    "description":"Create a CentOS v7 Server VM on AHV",
+    "parent":null,
+    "flows":[
+        {
+            "tasks":[
+                {
+                    "uid":"591cca6ee138231264cbc727",
+                    "classification":null,
+                    "work_type":"PROFILE",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cca6ee138231264cbc71e"
+                },
+                {
+                    "uid":"591ccab4e138231265235a8e",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591ccab4e138231265235a8d"
+                },
+                {
+                    "uid":"591cd088e1382312652361a0",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cd088e13823126523619f"
+                },
+                {
+                    "uid":"591cd354e138231264cbd1ed",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cd354e138231264cbd1ec"
+                }
+            ],
+            "uid":"cid:00000002",
+            "classification":null,
+            "eta":-1,
+            "creation_time":1495059124,
+            "edges":[
+                {
+                    "dest":"591ccab4e138231265235a8e",
+                    "src":"591cca6ee138231264cbc727",
+                    "uid":"591ccab4e138231265235a8f",
+                    "classification":null
+                },
+                {
+                    "dest":"591cd088e1382312652361a0",
+                    "src":"591ccab4e138231265235a8e",
+                    "uid":"591cd088e1382312652361a1",
+                    "classification":null
+                },
+                {
+                    "dest":"591cd354e138231264cbd1ed",
+                    "src":"591cd088e1382312652361a0",
+                    "uid":"591cd354e138231264cbd1ee",
+                    "classification":null
+                }
+            ],
+            "has_critical_tasks":true,
+            "modification_time":1495065533,
+            "version":0,
+            "flow_type":"ACTION",
+            "critical":true,
+            "name":"create-action"
+        }
+    ],
+    "dependencies":[
+
+    ],
+    "credentials":[
+        {
+            "username":"root",
+            "public_key":null,
+            "uid":"591c74fce138231264cbb746",
+            "classification":null,
+            "secret_type":"password",
+            "creation_time":1495037180,
+            "modification_time":1495065533,
+            "secret":null,
+            "version":23,
+            "name":"CentOS"
+        }
+    ],
+    "bp_id":null,
+    "properties":[
+
+    ],
+    "autoscale_enabled":false,
+    "name":"CentOS v7 Server VM",
+    "setup_ids":{
+
+    },
+    "h":0.0,
+    "resiliency_config":{
+        "post_flow":null,
+        "cool_down_period":"1800",
+        "alert_window":"1800",
+        "classification":null,
+        "alert_count":"1",
+        "pre_flow":null,
+        "listen_for":"internal",
+        "uid":"591c73dbe1382312652352a1"
+    },
+    "current_profile":null,
+    "resiliency_enabled":false,
+    "architecture":[
+        {
+            "tasks":[
+
+            ],
+            "uid":"cid:00000001",
+            "classification":"compute",
+            "autoscale_config":{
+                "post_flow":null,
+                "cool_down_period":"1800",
+                "uid":"591c74fce138231264cbb75b",
+                "classification":null,
+                "alert_count":"1",
+                "max_count":"1",
+                "pre_flow":null,
+                "min_count":"1",
+                "listen_for":"external",
+                "scale_by":"1",
+                "alert_window":"1800"
+            },
+            "profiles":[
+                "591c74fce138231264cbb745",
+                "591ccdaee138231264cbc7fc"
+            ],
+            "strategy_enabled":false,
+            "config":{
+                "setup":[
+
+                ],
+                "uid":"591c74fce138231264cbb75e",
+                "classification":null,
+                "deploy":[
+                    "591ccab4e138231265235a8d",
+                    "591cd088e13823126523619f",
+                    "591cd354e138231264cbd1ec"
+                ]
+            },
+            "parent":"591c74fce138231264cbb747",
+            "array_data":{
+                "tasks":[
+
+                ],
+                "uid":"591cd59fe138231265236bd8",
+                "classification":"array",
+                "creation_time":1495061919,
+                "policy_rules":[
+
+                ],
+                "autoscale_config":{
+                    "post_flow":null,
+                    "cool_down_period":"1800",
+                    "uid":"591cd59fe138231265236c07",
+                    "classification":null,
+                    "alert_count":"1",
+                    "max_count":"1",
+                    "pre_flow":null,
+                    "min_count":"1",
+                    "listen_for":"external",
+                    "scale_by":"1",
+                    "alert_window":"1800"
+                },
+                "profiles":[
+
+                ],
+                "strategy_enabled":false,
+                "version":6,
+                "scale_down_task":null,
+                "config":{
+                    "scale_up":[
+
+                    ],
+                    "scale_down":[
+
+                    ],
+                    "uid":"591cd59fe138231265236c0a",
+                    "classification":null
+                },
+                "parent":"591c73dbe138231265235299",
+                "scale_up_task":null,
+                "flows":[
+
+                ],
+                "modification_time":1495065533,
+                "bp_id":"591c73dbe138231265235299",
+                "properties":[
+
+                ],
+                "count":"2",
+                "autoscale_enabled":false,
+                "name":"Deploy CentOS v7 Server VM (Array)",
+                "h":0.0,
+                "resiliency_config":{
+                    "post_flow":null,
+                    "cool_down_period":"1800",
+                    "alert_window":"1800",
+                    "classification":null,
+                    "alert_count":"1",
+                    "pre_flow":null,
+                    "listen_for":"internal",
+                    "uid":"591cd59fe138231265236c08"
+                },
+                "current_profile":null,
+                "resiliency_enabled":false,
+                "w":0.0,
+                "strategy_config":{
+                    "post_flow":null,
+                    "rollback_pre_flow":null,
+                    "classification":null,
+                    "rolling_factor":"100",
+                    "initial_version":null,
+                    "approval_flag":false,
+                    "upgrade_flow":null,
+                    "rollback_flow":null,
+                    "pre_flow":null,
+                    "rollback_post_flow":null,
+                    "upgrade_type":"rolling_upgrade",
+                    "uid":"591cd59fe138231265236c09",
+                    "users":[
+
+                    ],
+                    "teams":[
+
+                    ],
+                    "emails":[
+
+                    ],
+                    "initial_count":"1"
+                },
+                "y":0.0,
+                "x":0.0
+            },
+            "flows":[
+
+            ],
+            "dependencies":[
+
+            ],
+            "bp_id":"591c73dbe138231265235299",
+            "properties":[
+                {
+                    "uid":"591cd1fce138231264cbce93",
+                    "classification":null,
+                    "url":null,
+                    "editable":false,
+                    "value":"test@@{calm_unique}@@",
+                    "key":"hostname",
+                    "property_description":null,
+                    "property_type":"INTERNAL",
+                    "setter":null
+                }
+            ],
+            "autoscale_enabled":false,
+            "name":"Deploy CentOS v7 Server VM",
+            "h":0.0,
+            "resiliency_config":{
+                "post_flow":null,
+                "cool_down_period":"1800",
+                "alert_window":"1800",
+                "classification":null,
+                "alert_count":"1",
+                "pre_flow":null,
+                "listen_for":"internal",
+                "uid":"591c74fce138231264cbb75c"
+            },
+            "current_profile":"591c74fce138231264cbb745",
+            "resiliency_enabled":false,
+            "w":0.0,
+            "strategy_config":{
+                "post_flow":null,
+                "rollback_pre_flow":null,
+                "classification":null,
+                "rolling_factor":"100",
+                "initial_version":null,
+                "approval_flag":false,
+                "upgrade_flow":null,
+                "rollback_flow":null,
+                "pre_flow":null,
+                "rollback_post_flow":null,
+                "upgrade_type":"rolling_upgrade",
+                "uid":"591c74fce138231264cbb75d",
+                "users":[
+
+                ],
+                "teams":[
+
+                ],
+                "emails":[
+
+                ],
+                "initial_count":"1"
+            },
+            "y":260.0,
+            "x":334.0
+        }
+    ],
+    "w":0.0,
+    "strategy_config":{
+        "post_flow":null,
+        "rollback_pre_flow":null,
+        "classification":null,
+        "rolling_factor":"100",
+        "initial_version":null,
+        "approval_flag":false,
+        "upgrade_flow":null,
+        "rollback_flow":null,
+        "pre_flow":null,
+        "rollback_post_flow":null,
+        "upgrade_type":"rolling_upgrade",
+        "uid":"591c73dbe1382312652352a2",
+        "users":[
+
+        ],
+        "teams":[
+
+        ],
+        "emails":[
+
+        ],
+        "initial_count":"1"
+    },
+    "y":0.0,
+    "x":0.0
+}
